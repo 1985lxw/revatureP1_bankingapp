@@ -19,13 +19,16 @@ CREATE TABLE IF NOT EXISTS employees (
   password_hash VARCHAR(255) NOT NULL
 );
 
+CREATE TYPE account_status AS ENUM ('ACTIVE', 'FROZEN', 'CLOSED');
+CREATE TYPE account_type AS ENUM ('ChECKING', 'SAVINGS');
+
 CREATE TABLE IF NOT EXISTS accounts (
   account_id UUID NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
   customer_id UUID NOT NULL,
   account_number VARCHAR(255) NOT NULL UNIQUE,
-  account_type VARCHAR(25) NOT NULL,
+  acc_type account_type NOT NULL,
   balance NUMERIC(19,2) NOT NULL DEFAULT 0.00,
-  status VARCHAR(25) NOT NULL DEFAULT 'ACTIVE',
+  account_status account_status NOT NULL DEFAULT 'ACTIVE',
   status_changed_by_employee_id UUID,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -39,7 +42,7 @@ CREATE TABLE IF NOT EXISTS accounts (
     REFERENCES employees(employee_id),
 
   CONSTRAINT chk_account_type
-    CHECK (account_type IN ('CHECKING', 'SAVINGS')),
+    CHECK (acc_type IN ('CHECKING', 'SAVINGS')),
 
   CONSTRAINT chk_account_status
     CHECK (status IN ('ACTIVE', 'FROZEN', 'CLOSED')),

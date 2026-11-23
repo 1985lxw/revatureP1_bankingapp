@@ -1,11 +1,13 @@
-package com.banking.app;
+package com.banking.app.config;
 
-import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DatabaseConnection {
+import io.github.cdimascio.dotenv.Dotenv;
+
+public class PostgresConnection {
+    private PostgresConnection() {}
 
     private static final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 

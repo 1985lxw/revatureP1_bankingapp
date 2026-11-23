@@ -1,14 +1,10 @@
-# Environment variables and secrets
 .env
 .env.*
-
-# Allow example configuration
-!.env.example
-
-# Maven
 target/
-
-# IDE
 .idea/
 *.iml
 .vscode/
+application.properties
+.env
+.DS_Store
+.idea/

@@ -1,0 +1,26 @@
+new Document account_notes
+category enum GENERAL, WIRE_TRANSFER, SUSPICIOUS_ACTIVITY, CUSTOMER_CONTACT
+{
+  "account_id": "postgres-account-uuid",
+  "author_employee_id": "postgres-employee-uuid",
+  "category": "SUSPICIOUS_ACTIVITY",
+  "note_text": "Unusual withdrawal activity reported.",
+  "created_at": "2026-11-11T14:00:00Z",
+  "related_transaction_id": "postgres-transaction-uuid",
+  "tags": ["review", "withdrawal"]
+}
+new Document activity_logs
+action_type: VIEW_ACCOUNT, WIRE_TRANSFER, SUSPICIOUS_ACTIVITY, FREEZE_ACCOUNT, UNFREEZE_ACCOUNT
+CREATE_NOTE
+{
+  "employee_id": "postgres-employee-uuid",
+  "action_type": "FREEZE_ACCOUNT",
+  "account_id": "postgres-account-uuid",
+  "customer_id": "postgres-customer-uuid",
+  "occurred_at": "2026-11-11T14:00:00Z",
+  "details": {
+    "reason": "Suspicious activity",
+    "previous_status": "ACTIVE",
+    "new_status": "FROZEN"
+  }
+}
