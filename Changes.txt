@@ -1,0 +1,11 @@
+The program's main entry point is App.java, you can run it by itself to start the console app
+
+Presentation.java is where I wrote the logic for displaying the program in the terminal
+using Scanner
+(I've only completed the registration option so far)
+
+DAO Flow
+- User's input (name, email, password, etc..) gets passed into a CustomerService.register()
+- CustomerService's register() method is responsible for cleaning and standardizing the inputs
+- register() calls CustomerDAOImpl's createCustomer() method
+- createCustomer() is what actually executes the sql statements to update the postgresql database

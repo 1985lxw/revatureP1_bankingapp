@@ -4,7 +4,12 @@ target/
 .idea/
 *.iml
 .vscode/
+<<<<<<< HEAD
 application.properties
 .env
 .DS_Store
 .idea/
+=======
+
+specs.md
+>>>>>>> ronny-ip
